@@ -1,0 +1,34 @@
+<mat-card [routerLink]="['/dog', dog.id]" class="dog-card">
+  <mat-card-header>
+    <mat-card-title>{{ dog.name }}</mat-card-title>
+    <mat-card-subtitle>
+      @if (dog.origin) {
+        Origem: {{ dog.origin }}
+      } @else {
+        Origem desconhecida
+      }
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  @if (dog.reference_image_id) {
+    <img mat-card-image
+         [src]="imageUrl"
+         [alt]="dog.name"
+         (error)="handleImageError($event)">
+  } @else {
+    <img mat-card-image
+         src="assets/images/dog-placeholder.jpg"
+         [alt]="dog.name + ' (sem imagem)'">
+  }
+
+  <mat-card-content>
+    @if (dog.temperament) {
+      <p><strong>Temperamento:</strong> {{ dog.temperament }}</p>
+    }
+    @if (dog.life_span) {
+      <p><strong>Expectativa de vida:</strong> {{ dog.life_span }}</p>
+    }
+    <p><strong>Tamanho:</strong> {{ dog.height.metric || 'N/A' }} cm</p>
+    <p><strong>Peso:</strong> {{ dog.weight.metric || 'N/A' }} kg</p>
+  </mat-card-content>
+</mat-card>

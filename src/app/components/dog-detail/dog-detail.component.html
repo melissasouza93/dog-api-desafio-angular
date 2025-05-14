@@ -1,0 +1,79 @@
+<div class="dog-detail-container">
+   <button mat-button (click)="goBack()" class="back-button">
+    <mat-icon>arrow_back</mat-icon> Voltar
+  </button>
+
+  @if (loading) {
+    <mat-spinner></mat-spinner>
+  } @else if (error) {
+    <div class="error-message">
+      <mat-icon>error</mat-icon>
+      <p>{{ error }}</p>
+    </div>
+  } @else if (dog) {
+    <mat-card class="dog-card">
+      <mat-card-header>
+        <div class="actions-minimal">
+          <button mat-button color="primary" (click)="editDog()" [disabled]="loading">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+          </button>
+          <button mat-button color="warn" (click)="deleteDog()" [disabled]="loading">
+            <mat-icon>delete</mat-icon>
+            <span>Excluir</span>
+          </button>
+        </div>
+        <mat-card-title>{{ dog.name }}</mat-card-title>
+        <mat-card-subtitle>
+          @if (dog.origin) {
+            Origem: {{ dog.origin }}
+          }
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      @if (getImageUrl()) {
+        <img mat-card-image [src]="getImageUrl()" [alt]="dog.name">
+      } @else {
+        <div class="no-image">
+          <mat-icon>image_not_supported</mat-icon>
+          <p>Imagem não disponível</p>
+        </div>
+      }
+
+      <mat-card-content>
+        <mat-list>
+          @if (dog.temperament) {
+            <mat-list-item>
+              <mat-icon matListItemIcon>mood</mat-icon>
+              <div matListItemTitle>Temperamento</div>
+              <div matListItemLine>{{ dog.temperament }}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          }
+
+          @if (dog.life_span) {
+            <mat-list-item>
+              <mat-icon matListItemIcon>schedule</mat-icon>
+              <div matListItemTitle>Expectativa de vida</div>
+              <div matListItemLine>{{ dog.life_span }}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          }
+
+          <mat-list-item>
+            <mat-icon matListItemIcon>straighten</mat-icon>
+            <div matListItemTitle>Tamanho</div>
+            <div matListItemLine>{{ dog.height.metric }} cm</div>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item>
+            <mat-icon matListItemIcon>fitness_center</mat-icon>
+            <div matListItemTitle>Peso</div>
+            <div matListItemLine>{{ dog.weight.metric }} kg</div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

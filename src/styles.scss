@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+.container {
+  padding: 20px;
+}
+
+.dog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.error {
+  color: red;
+}

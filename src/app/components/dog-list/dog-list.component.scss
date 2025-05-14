@@ -1,0 +1,153 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0;
+    color: #283593;
+    font-weight: 500;
+  }
+
+  .back-button {
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.search-field {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  color: map.get(mat.$red-palette, 600);
+  padding: 2rem;
+  background-color: map.get(mat.$red-palette, 50);
+  border-radius: 4px;
+
+  mat-icon {
+    margin-right: 8px;
+  }
+}
+
+.dog-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.dog-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+    @include mat.elevation(8);
+  }
+
+  mat-card-header {
+    padding-bottom: 1rem;
+
+    mat-card-title {
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+  }
+
+  img[mat-card-image] {
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .no-image {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9E9E9E;
+    background-color: #9E9E9E;
+
+    mat-icon {
+      font-size: 3rem;
+      width: 3rem;
+      height: 3rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  mat-card-content {
+    p {
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0;
+
+      mat-icon {
+        margin-right: 8px;
+        color: #283593;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: #9E9E9E;
+
+  mat-icon {
+    font-size: 3rem;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    color: #283593;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+.mat-paginator {
+  background: transparent !important;
+
+  .mat-paginator-container {
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .mat-paginator-range-actions {
+    button {
+      border: none !important;
+      background: transparent !important;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.04) !important;
+      }
+    }
+  }
+}
